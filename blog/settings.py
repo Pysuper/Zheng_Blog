@@ -164,9 +164,9 @@ HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
 # 自定义用户model
 AUTH_USER_MODEL = 'user.Ouser'
 
-SITE_DESCRIPTION = "StormSha的个人网站，记录生活的瞬间，分享学习的心得，感悟生活，留住感动，静静寻觅生活的美好"
+SITE_DESCRIPTION = "small_spider的个人网站，记录生活的瞬间，分享学习的心得，感悟生活，留住感动，静静寻觅生活的美好"
 
-SITE_KEYWORDS = "StormSha,静觅,网络,IT,技术,博客,Python"
+SITE_KEYWORDS = "small_spider, Django, Python, MySQL"
 
 SITE_END_TITLE = "聚会阅读器"
 
