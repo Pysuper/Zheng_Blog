@@ -12,11 +12,13 @@
     <!-- All in One SEO Pack 2.3.12.2.1 by Michael Torbert of Semper Fi Web Design[392,409] -->
     {% block description %}
     {% endblock description %}
+
     {% block keywords %}
     {% endblock keywords %}
     <link rel="icon" href="{% static 'images/picture.ico' %}" type="image/x-icon" />
     <title>
-        {% block title %}{% endblock title %}
+        {% block title %}
+        {% endblock title %}
     </title>
 
     <script>
@@ -108,24 +110,18 @@
             padding: 0 !important;
         }
     </style>
-    {% block head %}{% endblock head %}
+    {% block head %}
+    {% endblock head %}
     <link rel='stylesheet' id='crayon-css' href='{% static 'css/crayon.min.css' %}' type='text/css' media='all' />
-    <link rel='stylesheet' id='crayon-theme-github-css' href='{% static 'css/github.css' %}' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='crayon-font-monaco-css' href='{% static 'css/monaco.css' %}' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='page-list-style-css' href='{% static 'css/page-list.css' %}' type='text/css'
-        media='all' />
-    <link rel='stylesheet' id='l2h_style-css' href='{% static 'css/latex.min.css' %}' type='text/css'
-        media='screen, print' />
-    <link rel='stylesheet' id='l2h_print_style-css' href='{% static 'css/print.min.css' %}' type='text/css'
-        media='print' />
+    <link rel='stylesheet' id='crayon-theme-github-css' href='{% static 'css/github.css' %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='crayon-font-monaco-css' href='{% static 'css/monaco.css' %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='page-list-style-css' href='{% static 'css/page-list.css' %}' type='text/css' media='all' />
+    <link rel='stylesheet' id='l2h_style-css' href='{% static 'css/latex.min.css' %}' type='text/css' media='screen, print' />
+    <link rel='stylesheet' id='l2h_print_style-css' href='{% static 'css/print.min.css' %}' type='text/css' media='print' />
     <link rel='stylesheet' id='style-css' href='{% static 'css/style.css' %}' type='text/css' media='all' />
-    <link rel='stylesheet' id='style-css' href='{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}'
-        type='text/css' media='all' />
+    <link rel='stylesheet' id='style-css' href='{% static 'font-awesome-4.7.0/css/font-awesome.min.css' %}' type='text/css' media='all' />
     <link rel="stylesheet" href="{% static 'highlights/github.css' %}">
     <script type='text/javascript' src='{% static 'js/jquery.min.js' %}'></script>
-
     <script type='text/javascript'>
         /* <![CDATA[ */
         var CrayonSyntaxSettings = {
@@ -188,8 +184,7 @@
 
     <!--百度统计-->
     <meta name="360-site-verification" content="bdc579accc68a98f1258ebcce2266afa" />
-    <script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="{% static 'js/lightapp.js' %}">
-    </script>
+    <script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="{% static 'js/lightapp.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
     <script type="text/javascript"></script>
 </head>
@@ -213,9 +208,9 @@
                 <ul class="nav">
                     <!--获取一级分类信息-->
                     {% get_bigcategory_list as bigcategory %}
-                    <li id="menu-item-44"
-                        class="menu-item menu-item-type-custom menu-item-object-custom {% if not category %}current-menu-item current_page_item{% endif %} menu-item-home menu-item-44">
-                        <a href="/">首页</a></li>
+                    <li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom {% if not category %}current-menu-item current_page_item{% endif %} menu-item-home menu-item-44">
+                        <a href="/">首页</a>
+                    </li>
 
                     <!--导航条一级分类渲染-->
                     {% for big in bigcategory %}
@@ -225,8 +220,7 @@
 
                     <!--如果一级分类下有二级分类则进行渲染-->
                     {% if cate %}
-                    <li id="menu-item-14"
-                        class="menu-item menu-item-type-taxonomy menu-item-object-category {% if category == big.slug %}current-menu-item {% endif %} menu-item-has-children menu-item-14">
+                    <li id="menu-item-14" class="menu-item menu-item-type-taxonomy menu-item-object-category {% if category == big.slug %}current-menu-item {% endif %} menu-item-has-children menu-item-14">
                         <a href="{% url 'blog:category' big.slug '' %}">{{ big.name }}</a>
                         <ul class="sub-menu">
                             <!--导航条二级分类渲染-->
@@ -240,9 +234,9 @@
 
                     <!--无二级分类的一级分类渲染-->
                     {% else %}
-                    <li id="menu-item-851"
-                        class="menu-item menu-item-type-post_type menu-item-object-page {% if category == big.slug %}current-menu-item {% endif %} menu-item-851">
-                        <a href="{% url 'blog:category' big.slug '' %}">{{ big.name }}</a></li>
+                    <li id="menu-item-851" class="menu-item menu-item-type-post_type menu-item-object-page {% if category == big.slug %}current-menu-item {% endif %} menu-item-851">
+                        <a href="{% url 'blog:category' big.slug '' %}">{{ big.name }}</a>
+                    </li>
                     {% endif %}
                     {% endfor %}
                     <!--导航条结束-->
@@ -258,8 +252,9 @@
                                         <input type="search" name="q" class="form-control rounded-0 f-15"
                                             placeholder="搜索" required=True>
                                         <div class="input-group-btn">
-                                            <button class="btn btn-info rounded-0" type="submit"><i
-                                                    class="fa fa-search"></i></button>
+                                            <button class="btn btn-info rounded-0" type="submit">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </div>
                                     </div><!-- /input-group -->
                                 </form>
@@ -323,17 +318,13 @@
                 {#            <a rel="nofollow" target="_blank" href="https://www.qiniu.com/">七牛云存储 </a>丨#}
                 <a href="/sitemap.xml" title="Sitemap" target="_blank">网站地图</a>
             </div>
-
         </div>
     </footer>
     <!--网站底部结束-->
 
-    <link rel='stylesheet' id='metaslider-nivo-slider-css' href='{% static 'css/nivo-slider.css' %}' type='text/css'
-        media='all' property='stylesheet' />
-    <link rel='stylesheet' id='metaslider-public-css' href='{% static 'css/public.css' %}' type='text/css' media='all'
-        property='stylesheet' />
-    <link rel='stylesheet' id='metaslider-nivo-slider-bar-css' href='{% static 'css/bar.css' %}' type='text/css'
-        media='all' property='stylesheet' />
+    <link rel='stylesheet' id='metaslider-nivo-slider-css' href='{% static 'css/nivo-slider.css' %}' type='text/css' media='all' property='stylesheet' />
+    <link rel='stylesheet' id='metaslider-public-css' href='{% static 'css/public.css' %}' type='text/css' media='all' property='stylesheet' />
+    <link rel='stylesheet' id='metaslider-nivo-slider-bar-css' href='{% static 'css/bar.css' %}' type='text/css' media='all' property='stylesheet' />
     <script type='text/javascript' src='{% static 'js/jquery.js' %}'></script>
     <script type='text/javascript' src='{% static 'js/wp-embed.min.js' %}'></script>
     <script type='text/javascript' src='{% static 'js/jquery.nivo.slider.pack.js' %}'></script>
