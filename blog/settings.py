@@ -166,7 +166,7 @@ AUTH_USER_MODEL = 'user.Ouser'
 
 SITE_DESCRIPTION = "small_spider的个人网站，记录生活的瞬间，分享学习的心得，感悟生活，留住感动，静静寻觅生活的美好"
 
-SITE_KEYWORDS = "small_spider, Django, Python, MySQL"
+SITE_KEYWORDS = "Python"
 
 SITE_END_TITLE = "聚会阅读器"
 
