@@ -24,7 +24,7 @@
 
     <script>
         window._deel = {
-            name: '静觅',
+            name: 'TAO',
             url: '/',
             ajaxpager: 'on',
             commenton: 0,
@@ -314,18 +314,17 @@
             <!--目前登录功能只有注册登录其它没必要没做-->
             <div class="pull-right">
                 {% if request.session.username|default:'' == '' %}
-                <i class="fa fa-power-off"></i>
-                <a href="{% url 'accounts:login' %}?next={{ request.path }}">登录</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-user-plus"></i>
-                <a href="{% url 'accounts:register' %}?next={{ request.path }}">注册</a>
+                    <i class="fa fa-power-off"></i>
+                    <a href="{% url 'accounts:login' %}?next={{ request.path }}">登录</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i class="fa fa-user-plus"></i>
+                    <a href="{% url 'accounts:register' %}?next={{ request.path }}">注册</a>
                 {% else %}
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i>
-                <a href="/">投稿</a>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                <a href="{% url 'accounts:profile' %}?next={{ request.path }}">{{ request.session.username }}</a>
-
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i>
-                <a href="{% url 'accounts:logout' %}?next={{ request.path }}">退出</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user"></i>
+                    <a href="/">投稿</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <a href="{% url 'accounts:profile' %}?next={{ request.path }}">{{ request.session.username }}</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <a href="{% url 'accounts:logout' %}?next={{ request.path }}">退出</a>
                 {% endif %}
             </div>
             <!--登录注册结束-->

@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'storm',    # 博客应用
     'user',     # 自定义用户应用
     'comment',  # 评论
-    'xadmin',
+    'xadmin',   # xadmin
     'crispy_forms',
     'haystack',  # 全文搜索应用 这个要放在其他应用之前
     'rest_framework',   # API
