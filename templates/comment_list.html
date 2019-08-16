@@ -20,7 +20,8 @@
             </div>
             <div class="comt-author pull-left" id="nick">
                 {{ tourist.nickname }}
-                &nbsp; <a class="switch-author" href="javascript:;" data-type="switch-author" style="font-size:12px;">换个身份</a>
+                &nbsp; <a class="switch-author" href="javascript:;" data-type="switch-author"
+                    style="font-size:12px;">换个身份</a>
             </div>
             {% else %}
 
@@ -35,7 +36,9 @@
         <div class="comt">
             <div class="comt-box">
                 <h3>发表我的评论</h3>
-                <textarea placeholder="写点什么..." class="input-block-level comt-area" name="w" id="comment" cols="100%" rows="3" tabindex="1" onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
+                <textarea placeholder="写点什么..." class="input-block-level comt-area" name="w" id="comment" cols="100%"
+                    rows="3" tabindex="1"
+                    onkeydown="if(event.ctrlKey&amp;&amp;event.keyCode==13){document.getElementById('submit').click();return false};"></textarea>
                 <textarea name="comment" cols="100%" rows="4" style="display:none"></textarea>
                 <div class="comt-ctrl">
                     <button class="btn btn-primary pull-right" type="submit" name="submit" id="submit" tabindex="5">
@@ -45,7 +48,8 @@
                         <input type='hidden' name='comment_post_ID' value='{{ category }}' id='comment_post_ID' />
                         <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
                         <p style="display: none;">
-                            <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="da9dc5c77a" />
+                            <input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce"
+                                value="da9dc5c77a" />
                         </p>
                         <p style="display: none;">
                             <input type="hidden" id="ak_js" name="ak_js" value="50" />
@@ -56,8 +60,9 @@
                     </span>
                     <span class="muted comt-mailme">
                         <label for="comment_mail_notify" class="checkbox inline" style="padding-top:0">
-                            <input type="checkbox" name="comment_mail_notify" id="comment_mail_notify" value="comment_mail_notify" checked="checked" />有人回复时邮件通知我</label>
-                        </span>
+                            <input type="checkbox" name="comment_mail_notify" id="comment_mail_notify"
+                                value="comment_mail_notify" checked="checked" />有人回复时邮件通知我</label>
+                    </span>
                 </div>
             </div>
 
@@ -66,14 +71,21 @@
                 <ul>
                     <li class="form-inline">
                         <label class="hide" for="author">昵称</label>
-                        <input class="ipt" type="text" name="author" id="author" value="{% if user %}{{ user.username }}{% elif tourist %}{{ tourist.nickname }}{% endif %}" tabindex="2" placeholder="昵称">
+                        <input class="ipt" type="text" name="author" id="author"
+                            value="{% if user %}{{ user.username }}{% elif tourist %}{{ tourist.nickname }}{% endif %}"
+                            tabindex="2" placeholder="昵称">
                         <span class="help-inline">昵称 (必填)</span>
                     </li>
                     <li class="form-inline">
-                        <label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email" value="{% if user %}{{ user.email }}{% elif tourist %}{{ tourist.email }}{% endif %}" tabindex="3" placeholder="邮箱">
+                        <label class="hide" for="email">邮箱</label><input class="ipt" type="text" name="email" id="email"
+                            value="{% if user %}{{ user.email }}{% elif tourist %}{{ tourist.email }}{% endif %}"
+                            tabindex="3" placeholder="邮箱">
                         <span class="help-inline">邮箱 (必填)</span>
                     </li>
-                    <li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text" name="url" id="url" value="{% if user %}{{ user.link }}{% elif tourist %}{{ tourist.address }}{% endif %}" tabindex="4" placeholder="网址">
+                    <li class="form-inline"><label class="hide" for="url">网址</label><input class="ipt" type="text"
+                            name="url" id="url"
+                            value="{% if user %}{{ user.link }}{% elif tourist %}{{ tourist.address }}{% endif %}"
+                            tabindex="4" placeholder="网址">
                         <span class="help-inline">网址</span>
                     </li>
                 </ul>

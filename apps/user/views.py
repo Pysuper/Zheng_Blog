@@ -45,7 +45,7 @@ def register_view(request):
                 context['user_error'] = 'length'
                 return render(request, 'account/signup.html', context)
             if user:
-                context['user_error']='exit'
+                context['user_error'] = 'exit'
                 return render(request, 'account/signup.html', context)
             if not re.match('^[a-zA-Z0-9_.-]+@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*\.[a-zA-Z0-9]{2,6}$', email):
                 context['email_error'] = 'format'
@@ -83,29 +83,29 @@ def login_view(req):
     context = {}
     if req.method == 'POST':
         form = loginForm(req.POST)
-        next_to=req.POST.get('next','/')
+        next_to = req.POST.get('next', '/')
 
         remember = req.POST.get('remember', 0)
         if form.is_valid():
             # 获取表单用户密码
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            context={'username':username,'pwd':password}
+            context = {'username': username, 'pwd': password}
             # 获取的表单数据与数据库进行比较
-            user = authenticate(username = username,password = password)
-            if next_to=='':
-                next_to='/'
+            user = authenticate(username=username, password=password)
+            if next_to == '':
+                next_to = '/'
             if user:
                 if user.is_active:
                     # 比较成功，跳转index
-                    auth.login(req,user)
+                    auth.login(req, user)
                     req.session['username'] = username
                     req.session['uid'] = user.id
                     req.session['nick'] = None
                     req.session['tid'] = None
                     reqs = HttpResponseRedirect(next_to)
                     if remember != 0:
-                        reqs.set_cookie('username',username)
+                        reqs.set_cookie('username', username)
                     else:
                         reqs.set_cookie('username', '', max_age=-1)
                     return reqs
@@ -154,4 +154,3 @@ def change_profile_view(request):
         # 不是POST请求就返回空表单
         form = ProfileForm(instance=request.user)
     return render(request, 'oauth/change_profile.html', context={'form': form})
-

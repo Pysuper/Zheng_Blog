@@ -1,8 +1,7 @@
 # 创建了新的tags标签文件后必须重启服务器
 from django.utils.safestring import mark_safe
 from django import template
-from ..models import ArticleComment,AboutComment, MessageComment
-
+from ..models import ArticleComment, AboutComment, MessageComment
 
 register = template.Library()
 
@@ -27,12 +26,12 @@ def get_parent_comments(category, entry=0):
     elif category == 'message':
         lis = MessageComment.objects.filter(parent=None)
     else:
-        lis = ArticleComment.objects.filter(belong_id=entry,parent=None)
+        lis = ArticleComment.objects.filter(belong_id=entry, parent=None)
     return lis
 
 
 @register.simple_tag
-def get_child_comments(category,com):
+def get_child_comments(category, com):
     """获取一个父评论的子评论列表"""
     if category == 'about':
         lis = AboutComment.objects.filter(parent=com)
@@ -79,7 +78,8 @@ def generate_comment_html(sub_comment_dic, category, path, s=2):
     # 对传入的字典进行循环操作
     for k, v_dic in sub_comment_dic.items():
         html += '''
-<li class="comment odd alt depth-{0}" id="comment-{1}"><div class="c-avatar"><img alt='' data-original='https://cuiqingcai.com/avatar/ee89e6709c344980b7b82d1a13d496fb.png' class='avatar avatar-54 photo' height='54' width='54' /><div class="c-main" id="div-comment-{1}">{2}<div class="c-meta"><span class="c-author"><a href='http://fsfs' rel='external nofollow' class='url'>{3}</a></span>{4}<a rel='nofollow' class='comment-reply-link' href='{6}?replytocom={1}#respond' onclick='return addComment.moveForm( "div-comment-{1}", "{1}", "respond", "{5}" )' aria-label='回复给{3}'>回复</a></div></div></div>'''.format(s,k.id,k.content,k.author.nickname,k.create_date.strftime('%Y-%m-%d %H:%M:%S'),category,path)
+<li class="comment odd alt depth-{0}" id="comment-{1}"><div class="c-avatar"><img alt='' data-original='https://cuiqingcai.com/avatar/ee89e6709c344980b7b82d1a13d496fb.png' class='avatar avatar-54 photo' height='54' width='54' /><div class="c-main" id="div-comment-{1}">{2}<div class="c-meta"><span class="c-author"><a href='http://fsfs' rel='external nofollow' class='url'>{3}</a></span>{4}<a rel='nofollow' class='comment-reply-link' href='{6}?replytocom={1}#respond' onclick='return addComment.moveForm( "div-comment-{1}", "{1}", "respond", "{5}" )' aria-label='回复给{3}'>回复</a></div></div></div>'''.format(
+            s, k.id, k.content, k.author.nickname, k.create_date.strftime('%Y-%m-%d %H:%M:%S'), category, path)
 
         # 有可能v_dic中依然有元素, 递归继续加
         if v_dic:
@@ -119,11 +119,11 @@ def build_comment_tree(category, path, entry=0):
     # 对comment_dic中的每一组元素进行操作
     for k, v in comment_dic.items():
         # 第一层html
-        html += '''<li class="comment even thread-even depth-1" id="comment-{0}"><div class="c-avatar"><img alt='' data-original='https://cuiqingcai.com/avatar/5e43cb2c27191170aaece6a30a9d49f4.png' class='avatar avatar-54 photo' height='54' width='54' /><div class="c-main" id="div-comment-{0}">{1}<div class="c-meta"><span class="c-author">{2}</span>{3}<a rel='nofollow' class='comment-reply-link' href='{5}?replytocom={0}#respond' onclick='return addComment.moveForm( "div-comment-{0}", "{0}", "respond", "{4}" )' aria-label='回复给{2}'>回复</a></div></div></div>'''.format(k.id,k.content,k.author.nickname, k.create_date.strftime('%Y-%m-%d %H:%M:%S'), category, path)
+        html += '''<li class="comment even thread-even depth-1" id="comment-{0}"><div class="c-avatar"><img alt='' data-original='https://cuiqingcai.com/avatar/5e43cb2c27191170aaece6a30a9d49f4.png' class='avatar avatar-54 photo' height='54' width='54' /><div class="c-main" id="div-comment-{0}">{1}<div class="c-meta"><span class="c-author">{2}</span>{3}<a rel='nofollow' class='comment-reply-link' href='{5}?replytocom={0}#respond' onclick='return addComment.moveForm( "div-comment-{0}", "{0}", "respond", "{4}" )' aria-label='回复给{2}'>回复</a></div></div></div>'''.format(
+            k.id, k.content, k.author.nickname, k.create_date.strftime('%Y-%m-%d %H:%M:%S'), category, path)
         # 通过递归把他的儿子加上
         html += generate_comment_html(v, category, path)
     # 最后把ul关上
     html += " </ol>"
     # 关掉转义
     return mark_safe(html)
-

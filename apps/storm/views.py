@@ -1,7 +1,3 @@
-# ---------------------------
-__author__ = 'stormsha'
-__date__ = '2019/3/15 20:31'
-# ---------------------------
 import markdown
 import time
 from django.views import generic

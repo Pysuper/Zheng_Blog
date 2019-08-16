@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from user.models import Ouser
 from storm.models import Article, Tag, Category
 from .serializers import (UserSerializer, ArticleSerializer, TagSerializer, CategorySerializer)

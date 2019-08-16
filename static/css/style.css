@@ -3522,6 +3522,7 @@ button.btn::-moz-focus-inner,input[type=submit].btn::-moz-focus-inner {
 }
 
 .navbar .nav li a {
+	width: 100px;
 	padding: 16px 20px;
 	color: #fff
 }
