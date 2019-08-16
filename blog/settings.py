@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'storm',    # 博客应用
     'user',     # 自定义用户应用
     'comment',  # 评论
+    'xadmin',
+    'crispy_forms',
     'haystack',  # 全文搜索应用 这个要放在其他应用之前
     'rest_framework',   # API
 ]
@@ -70,7 +72,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 'storm.context_processors.settings_info',  # 自定义上下文管理器
             ],
         },
@@ -171,3 +172,7 @@ SITE_KEYWORDS = "Python"
 SITE_END_TITLE = "聚会阅读器"
 
 API_FLAG = True
+
+# 配置后台xadmin
+XADMIN_TITLE = "TAO BLOG 后台管理"  # 左上方的文字
+XADMIN_FOOTER_TITLE = "small.spider.p@gmail.com"   # 最下面的文字

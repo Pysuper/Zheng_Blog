@@ -1,9 +1,10 @@
+import xadmin
 from django.contrib import admin
 from .models import Article, Tag, Category, Carousel, Keyword, FriendLink, BigCategory
 
 
-@admin.register(Article)
-class ArticleAdmin(admin.ModelAdmin):
+@xadmin.sites.register(Article)
+class ArticleAdmin():
     # 这个的作用是给出一个筛选机制，一般按照时间比较好
     date_hierarchy = 'create_date'
 
@@ -24,24 +25,24 @@ class ArticleAdmin(admin.ModelAdmin):
 
     # 限制用户权限，只能看到自己编辑的文章
     def get_queryset(self, request):
-        qs = super(ArticleAdmin, self).get_queryset(request)
+        qs = super().get_list_queryset(request)
         if request.user.is_superuser:
             return qs
         return qs.filter(author=request.user)
 
 
-@admin.register(Tag)
-class TagAdmin(admin.ModelAdmin):
+@xadmin.sites.register(Tag)
+class TagAdmin():
     list_display = ('name', 'id', 'slug')
 
 
-@admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+@xadmin.sites.register(Category)
+class CategoryAdmin():
     list_display = ('name', 'id', 'slug')
 
 
-@admin.register(BigCategory)
-class BigCategoryAdmin(admin.ModelAdmin):
+@xadmin.sites.register(BigCategory)
+class BigCategoryAdmin():
     list_display = ('name', 'id', 'slug')
 
 
@@ -50,18 +51,18 @@ admin.site.site_header = '网站管理'
 admin.site.site_title = '博客后台管理'
 
 
-@admin.register(Carousel)
-class CarouselAdmin(admin.ModelAdmin):
+@xadmin.sites.register(Carousel)
+class CarouselAdmin():
     list_display = ('number', 'title', 'content', 'img_url', 'url')
 
 
-@admin.register(Keyword)
-class KeywordAdmin(admin.ModelAdmin):
+@xadmin.sites.register(Keyword)
+class KeywordAdmin():
     list_display = ('name', 'id')
 
 
-@admin.register(FriendLink)
-class FriendLinkAdmin(admin.ModelAdmin):
+@xadmin.sites.register(FriendLink)
+class FriendLinkAdmin():
     list_display = ('name', 'description', 'link', 'create_date', 'is_active', 'is_show')
     date_hierarchy = 'create_date'
     list_filter = ('is_active', 'is_show')
