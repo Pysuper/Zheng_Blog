@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
-from django.contrib.syndication.views import Feed
 from .models import Article
 from django.conf import settings
+from django.contrib.syndication.views import Feed
 
 
 class AllArticleRssFeed(Feed):
@@ -23,4 +22,3 @@ class AllArticleRssFeed(Feed):
     # 显示的内容的描述
     def item_description(self, item):
         return item.body_to_markdown()
-

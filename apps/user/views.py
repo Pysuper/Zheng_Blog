@@ -1,13 +1,13 @@
-from django.contrib import auth
+import re
 from .models import Ouser
-from django.contrib.auth import authenticate
-from django.contrib.auth.decorators import login_required
+from django.contrib import auth
 from django.contrib import messages
+from django.contrib.auth import authenticate
+from .forms import UserForm, loginForm, ProfileForm
 # 第四个是 auth中用户权限有关的类。auth可以设置每个用户的权限。
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from .forms import UserForm, loginForm, ProfileForm
-import re
 
 
 # 注册

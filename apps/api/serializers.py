@@ -41,4 +41,3 @@ class ArticleSerializer(serializers.ModelSerializer):
         # fields = ('id', 'author', 'title', 'views', 'category', 'tags')
         # fields = '__all__'
         exclude = ('body',)
-

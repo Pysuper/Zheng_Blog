@@ -1,4 +1,4 @@
-from django.conf.urls import url
+from django.conf.urls import url, include
 from .views import (IndexView, DetailView, MessageView, AboutView, DonateView, ExchangeView, ProjectView, QuestionView, MySearchView, LoveView, LinkView)
 
 urlpatterns = [
@@ -22,6 +22,8 @@ urlpatterns = [
     # 全文搜索
     url(r'^search/$', MySearchView.as_view(), name='search'),
     # 喜欢
-    url(r'^love/$', LoveView, name='love')
+    url(r'^love/$', LoveView, name='love'),
+    # 富文本编辑器接收文件
+    url(r'ckeditor/', include('ckeditor_uploader.urls'))
 ]
 

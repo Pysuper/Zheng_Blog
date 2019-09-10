@@ -1,7 +1,7 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
-from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
+from imagekit.models import ProcessedImageField
+from django.contrib.auth.models import AbstractUser
 
 
 # 继承 AbstractUser ，django 自带用户类，扩展用户个人网站字段，用户头像字段

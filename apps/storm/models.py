@@ -1,11 +1,11 @@
+import re
+import emoji
+import markdown
 from django.db import models
 from django.conf import settings
 from django.shortcuts import reverse
-
-import markdown
-import emoji
-import re
-
+from ckeditor.fields import RichTextField
+# from ckeditor_uploader.widgets import CKEditorUploadingWidget
 
 # 文章关键词，用来作为 SEO 中 keywords
 class Keyword(models.Model):
@@ -23,7 +23,8 @@ class Keyword(models.Model):
 class Tag(models.Model):
     name = models.CharField('文章标签', max_length=20)
     slug = models.SlugField(unique=True)
-    description = models.TextField('描述', max_length=240, default=settings.SITE_DESCRIPTION, help_text='用来作为SEO中description,长度参考SEO标准')
+    description = models.TextField('描述', max_length=240, default=settings.SITE_DESCRIPTION,
+                                   help_text='用来作为SEO中description,长度参考SEO标准')
 
     class Meta:
         verbose_name_plural = verbose_name = '标签'
@@ -42,10 +43,12 @@ class Tag(models.Model):
 
 # 网站导航菜单栏分类表
 class BigCategory(models.Model):
-    name = models.CharField('文章大分类', max_length=20) # 导航名称
-    slug = models.SlugField(unique=True)    # 用作文章的访问路径，每篇文章有独一无二的标识，下同
-    description = models.TextField('描述', max_length=240, default=settings.SITE_DESCRIPTION, help_text='用来作为SEO中description,长度参考SEO标准')  # 分类页描述
-    keywords = models.TextField('关键字', max_length=240, default=settings.SITE_KEYWORDS, help_text='用来作为SEO中keywords,长度参考SEO标准')  # 分类页keywords
+    name = models.CharField('文章大分类', max_length=20)  # 导航名称
+    slug = models.SlugField(unique=True)  # 用作文章的访问路径，每篇文章有独一无二的标识，下同
+    description = models.TextField('描述', max_length=240, default=settings.SITE_DESCRIPTION,
+                                   help_text='用来作为SEO中description,长度参考SEO标准')  # 分类页描述
+    keywords = models.TextField('关键字', max_length=240, default=settings.SITE_KEYWORDS,
+                                help_text='用来作为SEO中keywords,长度参考SEO标准')  # 分类页keywords
 
     class Meta:
         verbose_name_plural = verbose_name = '大分类'
@@ -57,9 +60,10 @@ class BigCategory(models.Model):
 # 导航栏，分类下的下拉菜单分类
 class Category(models.Model):
     name = models.CharField('文章分类', max_length=20)  # 分类名字
-    slug = models.SlugField(unique=True)    # 用做分类路径, 独一无二
-    description = models.TextField('描述', max_length=240, default=settings.SITE_DESCRIPTION, help_text='用来作为SEO中description,长度参考SEO标准')  # 分类栏描述
-    bigcategory = models.ForeignKey(BigCategory, verbose_name='大分类')    # 对应导航菜单外键
+    slug = models.SlugField(unique=True)  # 用做分类路径, 独一无二
+    description = models.TextField('描述', max_length=240, default=settings.SITE_DESCRIPTION,
+                                   help_text='用来作为SEO中description,长度参考SEO标准')  # 分类栏描述
+    bigcategory = models.ForeignKey(BigCategory, verbose_name='大分类')  # 对应导航菜单外键
 
     class Meta:
         verbose_name_plural = verbose_name = '分类'
@@ -77,17 +81,19 @@ class Category(models.Model):
 
 # 文章
 class Article(models.Model):
-    IMG_LINK = '/static/images/summary.jpg' # 文章默认缩略图
+    IMG_LINK = '/static/images/summary.jpg'  # 文章默认缩略图
     author = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='作者')
     title = models.CharField(max_length=150, verbose_name='文章标题')
     summary = models.TextField('文章摘要', max_length=230, default='文章摘要等同于网页description内容，请务必填写...')
     body = models.TextField(verbose_name='文章内容')
+    # body = RichTextField(blank=True, null=True, verbose_name="正文")
+    # is_md = models.BooleanField(default=False, verbose_name="markdown语法")
     img_link = models.CharField('图片地址', default=IMG_LINK, max_length=255)
     create_date = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
     update_date = models.DateTimeField(verbose_name='修改时间', auto_now=True)
     views = models.IntegerField('阅览量', default=0)
     loves = models.IntegerField('喜爱量', default=0)
-    slug = models.SlugField(unique=True)    # 文章唯一标识符
+    slug = models.SlugField(unique=True)  # 文章唯一标识符
     category = models.ForeignKey(Category, verbose_name='文章分类')
     tags = models.ManyToManyField(Tag, verbose_name='标签')
     keywords = models.ManyToManyField(Keyword, verbose_name='文章关键词', help_text='文章关键词，用来作为SEO中keywords，最好使用长尾词，3-4个足够')
@@ -129,7 +135,7 @@ class Carousel(models.Model):
 
     class Meta:
         verbose_name_plural = verbose_name = '图片轮播'
-        ordering = ['number', '-id']    # 编号越小越靠前，添加的时间越晚约靠前 ==> 按住创建顺序排序
+        ordering = ['number', '-id']  # 编号越小越靠前，添加的时间越晚约靠前 ==> 按住创建顺序排序
 
     def __str__(self):
         return self.content[:25]
@@ -169,12 +175,12 @@ class FriendLink(models.Model):
 
     def get_home_url(self):
         """提取友链的主页"""
-        u = re.findall(r'(http|https://.*?)/.*?', self.link)    # 正则表达式
-        home_url = u[0] if u else self.link # 列表推倒式
+        u = re.findall(r'(http|https://.*?)/.*?', self.link)  # 正则表达式
+        home_url = u[0] if u else self.link  # 列表推倒式
         return home_url
 
     def active_to_false(self):
-        self.is_active=False
+        self.is_active = False
         self.save(update_fields=['is_active'])
 
     def show_to_false(self):
@@ -193,5 +199,3 @@ class Activate(models.Model):
 
     def __str__(self):
         return self.id
-
-
