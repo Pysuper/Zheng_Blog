@@ -1136,7 +1136,7 @@
             <div class="article-tags">
                 <i class="fa fa-tags"></i>
                 {% get_article_tag object.id as tags %}
-                {% for tag in tags %}..
+                {% for tag in tags %}
                 <a href="{% url 'blog:tag' tag.slug %}" rel="tag">{{ tag.name }}</a>
                 {% endfor %}
             </div>

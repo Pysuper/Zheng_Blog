@@ -1,7 +1,7 @@
 {% load staticfiles %}
 {% load comment_tags oauth_tags %}
 <div id="respond" class="no_webshot">
-    <form action="/comment/add" method="post" id="commentform">
+    <form action="/comment/add/" method="post" id="commentform">
         <div class="comt-title">
             {% if request.session.username|default:'' != '' %}
             {% get_user_data request.session.uid as user %}
