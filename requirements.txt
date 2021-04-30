@@ -43,7 +43,7 @@ pytz==2018.9
 PyYAML==5.1.2
 requests==2.21.0
 requests-oauthlib==1.2.0
-rsa==4.0
+rsa==4.7
 six==1.12.0
 sqlparse==0.3.0
 tablib==0.13.0
